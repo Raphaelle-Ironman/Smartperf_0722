@@ -1,0 +1,169 @@
+###
+### CONFIGURATION
+###
+
+# Server
+@origin = https://staging.apiv2.eskimoz.app/smartperf
+# /!\ WARNING The API_KEY must be base64 encoded
+@authorization = Bearer <API_KEY>
+
+# User
+@userId = db9ad4ac-a247-47a7-a403-47ecdaf4a107
+@workspaceId = af74be70-895e-447c-8c37-d3ff46482c49
+
+# Route
+@routeId = a3634ae0-c337-44eb-b380-2df0530c59f3
+@insightsId = 53afe464-4b20-4ffb-a7c6-84ffee29153c
+
+###
+### ROUTES MANAGEMET
+###
+
+### Add a route
+
+POST {{origin}}/routes
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}",
+  "category": "HOMEPAGE",
+  "frequency": "MONTHLY",
+  "url": "https://www.eskimoz.fr"
+}
+
+### Get a route
+
+GET {{origin}}/routes/{{routeId}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
+
+### Get a route with results
+
+GET {{origin}}/routes/{{routeId}}?results=true
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
+
+### Get a route's insight
+
+GET {{origin}}/routes/{{routeId}}/insights/{{insightsId}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
+
+### Update a route
+
+PUT {{origin}}/routes/{{routeId}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}",
+  "category": "HOMEPAGE",
+  "frequency": "MONTHLY"
+}
+
+### Delete a route
+
+DELETE {{origin}}/routes/{{routeId}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
+
+###
+### Listings
+###
+
+### List routes without parameters
+
+GET {{origin}}/routes
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
+
+### List routes with some filter parameters
+
+GET {{origin}}/routes?q={"search": "EsKiMoZ","filter":{"$or":[{"category":{"$like":"HOMEPAGE"}}]}}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
+
+### List routes with some pagination parameters
+
+GET {{origin}}/routes?q={"amount":2,"page":2}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
+
+### List routes with a sort order
+
+GET {{origin}}/routes?q={"sort":[{"performance":"asc"}]}
+Content-Type: application/json
+Authorization: {{authorization}}
+
+{
+  "user": {
+    "id": "{{userId}}",
+    "workspaces": ["{{workspaceId}}"]
+  },
+  "workspaceId": "{{workspaceId}}"
+}
